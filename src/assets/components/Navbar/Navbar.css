@@ -1,0 +1,163 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4.5rem;
+    padding: 0 2rem;
+    background-color: rgb(18, 18, 18);
+}
+
+.navbarBrand,
+.navbarNavListItemLink {
+    color: white;
+    text-decoration: none;
+    transition: color 0.4s ease;
+}
+
+.navbarBrand {
+    font-size: 1.6rem;
+    text-align: center;
+    position: relative;
+}
+
+.navbarBrand::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-bottom: 2px solid #ff0099;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+.navbarBrand:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+.navbarBrand:hover {
+    color: #ff0099;
+}
+
+.navbarHamburgerButton {
+    width: 2.5rem; /* 35 pixels */
+    height: 2rem; /* 28 pixels */
+    display: none; /* Ocultado por padrão */
+    flex-direction: column;
+    gap: 0.6rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito de hover */
+.navbarHamburgerButton:hover {
+    transform: scale(1.1);
+}
+
+.navbarHamburgerButtonBar {
+    width: 100%;
+    height: 0.2rem; /* 2.8 pixels */
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Efeito de hover nas barras */
+.navbarHamburgerButton:hover .navbarHamburgerButtonBar {
+    background-color: #FF0099; /* Muda a cor ao passar o mouse */
+}
+
+/* Estilos para quando o botão é ativo */
+.navbarHamburgerButton.active .navbarHamburgerButtonBar:nth-child(1) {
+    transform: translateY(0.75rem) rotate(45deg);
+}
+
+.navbarHamburgerButton.active .navbarHamburgerButtonBar:nth-child(2) {
+    opacity: 0; /* Esconde a barra do meio */
+}
+
+.navbarHamburgerButton.active .navbarHamburgerButtonBar:nth-child(3) {
+    transform: translateY(-0.75rem) rotate(-45deg);
+}
+
+.navbarNavList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.navbarNavListItem {
+    position: relative;
+}
+
+.navbarNavListItemLink {
+    padding: 10px 15px;
+    display: inline-block;
+    transition: color 0.1s ease, transform 0.3s ease;
+}
+
+.navbarNavListItemLink:hover {
+    color: #ff0099; /* Muda a cor ao passar o mouse */
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px rgba(0, 179, 255, 0.7); /* Adiciona sombra ao texto */
+}
+
+
+@media (max-width: 768px) {
+    .navbarHamburgerButton {
+        display: flex; /* Exibe o botão como flexbox */
+    }
+    
+    /* Estilo da navbar lateral */
+    .navbarNav {
+        display: flex; /* Usa flexbox para organizar os itens */
+        flex-direction: column; /* Itens em coluna */
+        align-items: center;
+        justify-content: center;
+        position: fixed; /* Fixa a nav na tela */
+        bottom: 0; /* Posiciona a nav em baixo */
+        left: -250px; /* Inicialmente fora da tela */
+        width: 250px; /* Largura da nav */
+        height: calc(100% - 4.5rem); /* Altura total da viewport */
+        background-color: rgb(18, 18, 18); /* Fundo quase preto */
+        transition: left 0.3s ease; /* Transição suave */
+        z-index: 100; /* Garante que a nav fique acima de outros elementos */
+    }
+    
+    .navbarNav.active {
+        left: 0; /* Move a nav para a tela */
+    }
+    
+    /* Lista de itens */
+    .navbarNavList {
+        list-style: none; /* Remove marcadores da lista */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+        display: flex; /* Usa flexbox */
+        flex-direction: column; /* Organiza os itens verticalmente */
+        text-align: center;
+    }
+    
+    /* Itens da lista */
+    .navbarNavListItem {
+        opacity: 0; /* Oculta os itens inicialmente */
+        transform: translateY(-10px); /* Desloca os itens para cima */
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
+    }
+    
+    /* Adiciona a animação dos itens quando a nav estiver aberta */
+    .navbarNav.active .navbarNavListItem {
+        opacity: 1; /* Torna os itens visíveis */
+        transform: translateY(0); /* Reverte a posição para o padrão */
+    }
+    
+    /* Links */
+    .navbarNavListItemLink {
+        font-size: 1.3rem; /* Tamanho do texto */
+    }
+}
